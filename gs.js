@@ -12,7 +12,6 @@ function onOpen() {
 function start() {
   
   var ranges = sheet.getSelection().getActiveRangeList().getRanges(); ///выделеные диапазоны
-  var items = []; //!!
   for (var i = 0; i < ranges.length; i++) {
      loadRange(ranges[i]);  
   }
