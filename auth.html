@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">  
+  <script>
+  function Ok(){
+     var login = document.getElementById("login").value;
+     var passw = document.getElementById("passw").value;
+     if (login=='') return alert("Введите логин");
+     if (passw=='') return alert("Введите пароль");
+     document.getElementById("ok").disabled = "true";
+     document.getElementById("no").disabled = "true";
+       
+     google.script.run.withSuccessHandler(Close)
+            .withFailureHandler(showError).auth(login, passw);
+    
+  }
+  function showError(error){
+       document.getElementById("ok").disabled = "";
+       document.getElementById("no").disabled = "";
+    alert(error);
+
+
+  }
+  function Close(){
+    google.script.host.close();
+  }
+  </script>
+</head>
+<body style ="font-size:22px;">
+
+    <div style="display:flex">
+       <div style="width:6em"><label>Логин:</label></div>
+       <div style=""><input type = "text" id="login" /></div>
+    </div>
+    
+    <div style="display:flex">
+         <div style="width:6em"><label>Пароль:</label></div>
+        <div><input id = "passw" type = "password"/></div>
+    </div>
+    
+    <div style="display:flex;justify-content: center; margin-top: 25px;justify-content: space-between;">    
+    <input type = "button" style ="font-size:20px;" value = "Ок" id="ok" onClick="Ok()"/>
+    <input type = "button" style ="font-size:20px;" value = "Отмена" id="no" onClick="No()"/> 
+    </div>
+  </body>
+</html>
